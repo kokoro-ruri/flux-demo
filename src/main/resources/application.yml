@@ -1,0 +1,48 @@
+spring:
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
+  datasource:
+    url: jdbc:postgresql://192.168.3.252:5432/agcim
+    username: agcim
+    password: agcim123
+    driver-class-name: org.postgresql.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+       initialSize: 2
+       max-active: 30
+       min-idle: 2
+       max-wait: 8000
+       validation-query-timeout: 1
+       test-on-borrow: true
+       test-on-return: true
+       test-while-idle: true
+       time-between-eviction-runs-millis: 60000
+       min-evictable-idle-time-millis: 300000
+       async-close-connection-enable: true
+  messages:
+    basename: messages
+    encoding: UTF-8
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis:
+#  Property 'configuration' and 'configLocation' can not specified with together
+#  config-location: classpath:mybatis-config.xml
+  type-aliases-package: com.example.fluxdemo.domain
+  mapper-locations: classpath:com/example/fluxdemo/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    default-fetch-size: 500
+    default-statement-timeout: 80
+server:
+  port: 8080
+  servlet:
+    context-path: /flux-demo
